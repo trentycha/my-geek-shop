@@ -6,7 +6,8 @@ export const products = [
     price: 39.99,
     image: "",
     description: "Figurine Totoro, issu du Ghibli 'Mon Voisin Totoro'. Taille : 20cm. Poids : 2kg",
-    stock: 6
+    stock: 6,
+    isShown: true
   },
   {
     id: 2,

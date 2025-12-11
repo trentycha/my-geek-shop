@@ -1,0 +1,36 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Alice",
+      "firstname": "Wonderland",
+      "mail": "alice@gmail.com",
+      "num": "0644125412",
+      "adresse": "11 avenue du jeune cheval, 33600 Pessac"
+    },
+    {
+      "id": "2",
+      "name": "Paulette",
+      "firstname": "Jean",
+      "mail": "paulette@gmail.com",
+      "num": "0644125413",
+      "adresse": "11 avenue de l'hirondelle, 33700 Mérignac"
+    },
+    {
+      "id": "3",
+      "name": "Michel",
+      "firstname": "Durand",
+      "mail": "michel@gmail.com",
+      "num": "0644125414",
+      "adresse": "14 avenue du jeune cheval, 33600 Pessac"
+    },
+    {
+      "id": "5426",
+      "name": "Pallaro",
+      "firstname": "Thomas",
+      "mail": "thom.palla@gmail.com",
+      "num": "0658629208",
+      "adresse": "5 Place Vincent Van Gogh"
+    }
+  ]
+}
