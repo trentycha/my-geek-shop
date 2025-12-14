@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router";
+import Login from "../pages/Login"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBasketShopping } from '@fortawesome/free-solid-svg-icons';
+import { faBasketShopping, faUser } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
+    const navigate = useNavigate();
 
     return (
 
@@ -10,9 +13,10 @@ const Header = () => {
                 <span className="text-white">My Geek Shop Logo</span>
             </div>
             <div className="w-1/2 flex p-6 gap-16 justify-end">
-                <span className="text-white">Goodies</span>
-                <span className="text-white">A propos</span>
-                <span className="text-white"><FontAwesomeIcon icon={faBasketShopping} /></span>
+                <button className="text-white">Goodies</button>
+                <button className="text-white">A propos</button>
+                <button onClick={() => navigate('/login')} className="text-white"><FontAwesomeIcon icon={faUser} /></button>
+                <button className="text-white"><FontAwesomeIcon icon={faBasketShopping} /></button>
             </div>
         </div>
 
