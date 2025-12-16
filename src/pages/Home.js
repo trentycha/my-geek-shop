@@ -1,16 +1,28 @@
 import { useState, useEffect } from 'react';
-import { products } from '../datas/products.js';
+import { useNavigate } from 'react-router-dom';
 import Loading from './Loading.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 const Home = () => {
     const [loading, setLoading] = useState(true);
+    const [products, setProduct] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        setTimeout(() => {
+        const fetchProducts = async () => {
+            try {
+            const response = await fetch ('http://localhost:3001/products');
+            const data = await response.json();
+            setProduct(data);
             setLoading(false);
-        }, 3000);
+            } catch (error) {
+                alert(error.message);
+            }
+        };
+
+        fetchProducts();
+        
     }, []);
 
     if(loading) {
@@ -40,6 +52,8 @@ const Home = () => {
                         <p className="flex justify-start text-gray-600 text-left text-sm mt-2 mb-2">{product.description}</p>
                     </div>
                     <div className="p-6 flex items-center justify-end gap-4">
+                        <button className="p-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+                        onClick={() => navigate(`productdetails/${product.id}`)}>Je découvre !</button>
                         <button className="p-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"><FontAwesomeIcon icon={faHeart} /></button>
                         <button className="px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors font-semibold">Panier</button>
                     </div>

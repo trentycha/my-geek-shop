@@ -7,7 +7,7 @@ const Login = () => {
     const [mail, setMail] = useState("");
     const [num, setNum] = useState("");
     const [adresse, setAdresse] = useState("");
-    const redirection = useNavigate();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -22,7 +22,7 @@ const Login = () => {
             });
 
             const newUser = await response.json();
-            redirection("/");
+            navigate("/");
     
         } catch (error) {
             alert(error.message);

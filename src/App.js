@@ -2,7 +2,8 @@ import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home.js';
 import Login from './pages/Login.js';
-import UserList from './pages/UserList.js';
+import Profile from './pages/Profile';
+import ProductDetails from './pages/ProductDetails';
 import Header from './components/Header.js';
 
 function App() {
@@ -12,7 +13,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/userlist" element={<UserList />} />
+        <Route path="/users/:id" element={<Profile />} />
+        <Route path="/products/:id" element={<ProductDetails />} />
       </Routes>
     </div>
   );
