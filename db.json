@@ -5,19 +5,136 @@
       "name": "Figurine Totoro",
       "category": "Ghibli",
       "price": "39.99",
-      "image": "",
+      "image": "/images/totoro.png",
       "description": "Figurine Totoro, issu du Ghibli 'Mon Voisin Totoro'. Taille : 20cm. Poids : 2kg",
       "stock": "6",
-      "isShown": "true"
+      "isShown": "true",
+      "caracteristics": {
+        "height": "20cm",
+        "weight": "2kg",
+        "material": "PVC",
+        "brand": "Studio Ghibli"
+      }
     },
     {
       "id": "2",
       "name": "Sabre Laser",
       "category": "Star Wars",
       "price": "69.99",
-      "image": "",
+      "image": "/images/sabre-laser.png",
       "description": "Sabre laser réaliste issu de la Licence Star Wars. S'illumine et fais du bruit, comme si vous étiez dans les étoiles. Fonctionne avec piles.",
-      "stock": "9"
+      "stock": "9",
+      "caracteristics": {
+        "length": "100cm",
+        "weight": "500g",
+        "material": "Aluminium",
+        "brand": "Warner Bros"
+      }
+    },
+    {
+      "id": "3",
+      "name": "Trône de Fer - Édition Collector",
+      "category": "Game of Thrones",
+      "price": "299.99",
+      "image": "/images/throne.png",
+      "description": "Trône de Fer en édition collector, parfait pour les fans de Game of Thrones. Fabriqué en résine de haute qualité avec des détails minutieux.",
+      "stock": "3",
+      "caracteristics": {
+        "height": "60cm",
+        "weight": "5kg",
+        "material": "Résine",
+        "brand": "HBO"
+      }
+    },
+    {
+      "id": "4",
+      "name": "Casque de Dark Vador",
+      "category": "Star Wars",
+      "price": "89.99",
+      "image": "/images/casque-vador.png",
+      "description": "Casque de Dark Vador, parfait pour les cosplay ou les collectionneurs. Taille unique, convient à la plupart des adultes.",
+      "stock": "5",
+      "caracteristics": {
+        "height": "30cm",
+        "weight": "1.5kg",
+        "material": "Plastique ABS",
+        "brand": "Lucasfilm"
+      }
+    },
+    {
+      "id": "5",
+      "name": "Figurine Goku Super Saiyan",
+      "category": "Dragon Ball",
+      "price": "49.99",
+      "image": "/images/goku.png",
+      "description": "Figurine de Goku en Super Saiyan, issue de la célèbre série Dragon Ball Z. Taille : 25cm. Poids : 1kg.",
+      "stock": "7",
+      "caracteristics": {
+        "height": "25cm",
+        "weight": "1kg",
+        "material": "PVC",
+        "brand": "Toei Animation"
+      }
+    },
+    {
+      "id": "6",
+      "name": "Lego Millennium Falcon",
+      "category": "Star Wars",
+      "price": "159.99",
+      "image": "/images/faucon.png",
+      "description": "Set Lego du Millennium Falcon, le célèbre vaisseau de Han Solo dans Star Wars. Comprend plus de 1300 pièces.",
+      "stock": "4",
+      "caracteristics": {
+        "pieces": "1337",
+        "length": "84cm",
+        "material": "Plastique",
+        "brand": "LEGO"
+      }
+    },
+    {
+      "id": "7",
+      "name": "Figurine Harry Potter",
+      "category": "Harry Potter",
+      "price": "34.99",
+      "image": "/images/harry-potter.png",
+      "description": "Figurine de collection de Harry Potter, avec sa baguette magique et sa tenue emblématique. Taille : 18cm.",
+      "stock": "8",
+      "caracteristics": {
+        "height": "18cm",
+        "weight": "800g",
+        "material": "PVC",
+        "brand": "Warner Bros"
+      }
+    },
+    {
+      "id": "8",
+      "name": "Peluche Pikachu Géante",
+      "category": "Pokémon",
+      "price": "79.99",
+      "image": "/images/pikachu.png",
+      "description": "Peluche géante de Pikachu, le célèbre Pokémon électrique. Taille : 1m. Parfaite pour les câlins et la décoration.",
+      "stock": "2",
+      "caracteristics": {
+        "height": "100cm",
+        "weight": "3kg",
+        "material": "Coton et Polyester",
+        "brand": "The Pokémon Company"
+      }
+    },
+    {
+      "id": "9",
+      "name": "Figurine Link",
+      "category": "The Legend of Zelda",
+      "price": "44.99",
+      "image": "/images/link.png",
+      "description": "Figurine de Link, le héros de la série The Legend of Zelda. Taille : 22cm. Détails soignés et peinture de haute qualité.",
+      "stock": "10",
+      "caracteristics": {
+        "height": "22cm",
+        "weight": "900g",
+        "material": "PVC",
+        "brand": "Nintendo"
+      }
     }
   ],
   "users": [
