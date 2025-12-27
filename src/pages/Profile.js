@@ -12,7 +12,7 @@ const Profile = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-            const response = await fetch(`http://localhost:3001/users/${id}`);
+            const response = await fetch(`http://localhost:3001/api/user/${id}`);
             const data = await response.json();
             setUser(data);
             setLoading(false);
@@ -29,7 +29,7 @@ const Profile = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch(`http://localhost:3001/users/${id}`, {
+            const response = await fetch(`http://localhost:3001/api/user/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -48,10 +48,10 @@ const Profile = () => {
     const handleDelete = async () => {
 
         try {
-            const response = await fetch(`http://localhost:3001/users/${id}`, {
-                method: "DELETE"
+            const response = await fetch(`http://localhost:3001/api/user/${id}`, {
+                method: "DELETE",
             });
-            navigate('/login');
+            navigate('/user');
             } catch (error) {
                 alert(error.message);
             }

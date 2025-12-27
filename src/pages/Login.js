@@ -5,24 +5,25 @@ const Login = () => {
     const [name, setName] = useState("");
     const [firstname, setFirstname] = useState("");
     const [mail, setMail] = useState("");
-    const [num, setNum] = useState("");
-    const [adresse, setAdresse] = useState("");
+    const [password, setPassword] = useState("");
+    const [phone, setPhone] = useState("");
+    const [address, setAddress] = useState("");
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
     
         try {
-            const response = await fetch("http://localhost:3001/users", {
+            const response = await fetch("http://localhost:3001/api/user", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({name, firstname, mail, num, adresse})
+                body: JSON.stringify({name, firstname, mail, password, phone, address})
             });
 
             const newUser = await response.json();
-            navigate("/");
+            navigate(`/user/${newUser.id}`);
     
         } catch (error) {
             alert(error.message);
@@ -31,8 +32,9 @@ const Login = () => {
         setName("");
         setFirstname("");
         setMail("");
-        setNum("");
-        setAdresse("");
+        setPassword("");
+        setPhone("");
+        setAddress("");
     };
 
     return (
@@ -58,14 +60,19 @@ const Login = () => {
                     onChange={(e) => setMail(e.target.value)} 
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg"/>
 
+                    <input placeholder="Mot de passe"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)} 
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg"/>
+
                     <input placeholder="Téléphone"
-                    value={num}
-                    onChange={(e) => setNum(e.target.value)} 
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)} 
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg"/>
 
                     <input placeholder="Adresse"
-                    value={adresse}
-                    onChange={(e) => setAdresse(e.target.value)} 
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)} 
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg"/>
 
                     <button type="submit" className="w-full bg-orange-600 text-white font-semibold py-3 rounded-lg hover:bg-orange-700 transition-colors duration-200">Je m'inscris !</button>

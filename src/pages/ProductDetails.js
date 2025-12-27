@@ -43,9 +43,9 @@ const ProductDetails = () => {
         <div className="container mx-auto px-6 py-12">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
                 
-                {/* <div className="rounded-3xl p-12 flex items-center justify-center">
+                <div className="rounded-3xl p-12 flex items-center justify-center">
                     <img src={products.image} alt={products.name} className="w-full h-auto object-contain max-h-[600px] drop-shadow-2xl rounded-xl"/>
-                </div> */}
+                </div>
 
                 <div className="flex flex-col justify-start text-left">
                     <p className="text-orange-600 font-semibold uppercase text-sm tracking-wider mb-3">{products.category}</p>

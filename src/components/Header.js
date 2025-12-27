@@ -15,7 +15,7 @@ const Header = () => {
             <div className="w-1/2 flex p-6 gap-16 justify-end">
                 <button className="text-white">Goodies</button>
                 <button className="text-white">A propos</button>
-                <button onClick={() => navigate('/login')} className="text-white"><FontAwesomeIcon icon={faUser} /></button>
+                <button onClick={() => navigate('/user')} className="text-white"><FontAwesomeIcon icon={faUser} /></button>
                 <button className="text-white"><FontAwesomeIcon icon={faBasketShopping} /></button>
             </div>
         </div>
