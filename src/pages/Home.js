@@ -12,7 +12,7 @@ const Home = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-            const response = await fetch ('http://localhost:3001/products');
+            const response = await fetch ('http://localhost:3001/api/product');
             const data = await response.json();
             setProduct(data);
             setLoading(false);
@@ -56,7 +56,7 @@ const Home = () => {
                         </div>
                         <div className="p-6 flex items-center justify-end gap-4">
                             <button className="p-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
-                            onClick={() => navigate(`products/${product.id}`)}>Je découvre !</button>
+                            onClick={() => navigate(`product/${product.id}`)}>Je découvre !</button>
                             <button className="p-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"><FontAwesomeIcon icon={faHeart} /></button>
                             <button className="px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors font-semibold">Panier</button>
                         </div>

@@ -12,7 +12,7 @@ const ProductDetails = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-            const response = await fetch (`http://localhost:3001/products/${id}`);
+            const response = await fetch (`http://localhost:3001/api/product/${id}`);
             const data = await response.json();
             setProduct(data);
             } catch (error) {
@@ -27,7 +27,7 @@ const ProductDetails = () => {
     useEffect(() => {
         const fetchAllProducts = async () => {
             try {
-                const response = await fetch ('http://localhost:3001/products');
+                const response = await fetch ('http://localhost:3001/api/product');
                 const data = await response.json();
                 setAllProducts(data);
             } catch (error) {
@@ -43,9 +43,9 @@ const ProductDetails = () => {
         <div className="container mx-auto px-6 py-12">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
                 
-                <div className="rounded-3xl p-12 flex items-center justify-center">
+                {/* <div className="rounded-3xl p-12 flex items-center justify-center">
                     <img src={products.image} alt={products.name} className="w-full h-auto object-contain max-h-[600px] drop-shadow-2xl rounded-xl"/>
-                </div>
+                </div> */}
 
                 <div className="flex flex-col justify-start text-left">
                     <p className="text-orange-600 font-semibold uppercase text-sm tracking-wider mb-3">{products.category}</p>
@@ -131,7 +131,7 @@ const ProductDetails = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mt-8">
                 {allProducts.filter(product => product.id !== products.id).map((product) => (
                         <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
-                        onClick={() => navigate(`../products/${product.id}`)}>
+                        onClick={() => navigate(`/product/${product.id}`)}>
                             <div className="relative bg-gray-900 h-64 flex items-start justify-center">
                                 <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
                             </div>
