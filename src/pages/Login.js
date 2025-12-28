@@ -2,24 +2,20 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
 const Login = () => {
-    const [name, setName] = useState("");
-    const [firstname, setFirstname] = useState("");
     const [mail, setMail] = useState("");
     const [password, setPassword] = useState("");
-    const [phone, setPhone] = useState("");
-    const [address, setAddress] = useState("");
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
     
         try {
-            const response = await fetch("http://localhost:3001/api/user", {
+            const response = await fetch("http://localhost:3001/api/user/login", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({name, firstname, mail, password, phone, address})
+                body: JSON.stringify({mail, password})
             });
 
             const newUser = await response.json();
@@ -29,12 +25,8 @@ const Login = () => {
             alert(error.message);
         }
 
-        setName("");
-        setFirstname("");
         setMail("");
         setPassword("");
-        setPhone("");
-        setAddress("");
     };
 
     return (
@@ -42,18 +34,7 @@ const Login = () => {
             <div>
                 <form onSubmit={handleSubmit} className="max-w-md mx-auto p-8 bg-white rounded-lg shadow-md space-y-4">
 
-                    <h4 className="text-left text-2xl font-semibold text-black-300">Rejoignez la Geek Community !</h4>
-                    <p className="text-left text-sm text-black-300">Passez vos commandes en un clic et recevez des offres exclusives rien que pour vous.</p>
-
-                    <input placeholder="Nom"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg" />
-
-                    <input placeholder="Prénom"
-                    value={firstname}
-                    onChange={(e) => setFirstname(e.target.value)} 
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg"/>
+                    <h4 className="text-left text-2xl font-semibold text-black-300">Connectez-vous !</h4>
 
                     <input placeholder="Mail"
                     value={mail}
@@ -63,31 +44,6 @@ const Login = () => {
                     <input placeholder="Mot de passe"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)} 
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg"/>
-
-                    <input placeholder="Téléphone"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)} 
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg"/>
-
-                    <input placeholder="Adresse"
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)} 
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg"/>
-
-                    <button type="submit" className="w-full bg-orange-600 text-white font-semibold py-3 rounded-lg hover:bg-orange-700 transition-colors duration-200">Je m'inscris !</button>
-                
-                </form>
-            </div>
-            <div>
-                <form className="max-w-md mx-auto p-8 bg-white rounded-lg shadow-md space-y-4">
-
-                    <h4 className="text-left text-2xl font-semibold text-black-300">Déjà un compte ?</h4>
-
-                    <input placeholder="Mail"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg"/>
-
-                    <input placeholder="Mot de passe"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg"/>
 
                     <button type="submit" className="w-full bg-orange-600 text-white font-semibold py-3 rounded-lg hover:bg-orange-700 transition-colors duration-200">Je me connecte !</button>

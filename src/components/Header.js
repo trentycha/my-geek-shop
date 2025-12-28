@@ -16,7 +16,7 @@ const Header = () => {
                 <button className="text-white">Goodies</button>
                 <button className="text-white">A propos</button>
                 <button onClick={() => navigate('/user')} className="text-white"><FontAwesomeIcon icon={faUser} /></button>
-                <button className="text-white"><FontAwesomeIcon icon={faBasketShopping} /></button>
+                <button onClick={() => navigate('/cart')} className="text-white"><FontAwesomeIcon icon={faBasketShopping} /></button>
             </div>
         </div>
 

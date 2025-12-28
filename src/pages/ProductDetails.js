@@ -38,6 +38,31 @@ const ProductDetails = () => {
         fetchAllProducts();
     }, []);
 
+    const handleAddProduct = async (productId) => {
+        const userId = localStorage.getItem('userId');
+        
+        try {
+            const response = await fetch('http://localhost:3001/api/cart', {
+
+                method:'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userId: parseInt(userId),
+                    productId: productId,
+                    quantity: 1
+                })
+            });
+
+            if(response.ok) {
+                alert("Produit ajouté au panier");
+            }
+        } catch(error) {
+            alert("Le produit n'a pas été ajouté");
+        }
+    }
+
     return (
     <div className="min-h-screen bg-gray-50 py-24">
         <div className="container mx-auto px-6 py-12">
@@ -59,7 +84,8 @@ const ProductDetails = () => {
                     <p className="text-gray-600 text-lg leading-relaxed mb-10">{products.description}</p>
 
                     <div className="flex gap-4">
-                        <button className="flex-1 bg-orange-600 text-white py-4 px-8 rounded-xl font-semibold text-lg hover:bg-orange-700 transition shadow-lg shadow-gray-200">
+                        <button onClick={() => handleAddProduct(products.id)}
+                        className="flex-1 bg-orange-600 text-white py-4 px-8 rounded-xl font-semibold text-lg hover:bg-orange-700 transition shadow-lg shadow-gray-200">
                             Ajouter au panier
                         </button>
                         <button className="bg-orange-100 text-orange-600 py-4 px-6 rounded-xl font-semibold hover:bg-orange-200 transition">

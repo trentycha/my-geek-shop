@@ -7,7 +7,7 @@ router.get('/:id', userController.getUserById);
 // router.get('/:id', auth, userController.getAllProductsFromUser);
 
 router.post('/', userController.register);
-router.post('/', userController.login);
+router.post('/login', userController.login);
 
 router.put('/:id', auth, userController.updateUser);
 

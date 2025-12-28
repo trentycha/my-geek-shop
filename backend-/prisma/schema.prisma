@@ -46,6 +46,7 @@ model Product {
 model Cart {
   userId    Int      @map("Id_user")
   productId Int      @map("Id_product")
+  quantity  Int      @default(0)
   user      User     @relation(fields: [userId], references: [id])
   product   Product  @relation(fields: [productId], references: [id])
 

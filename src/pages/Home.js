@@ -29,6 +29,31 @@ const Home = () => {
         return <Loading />
     }
 
+    const handleAddProduct = async (productId) => {
+        const userId = localStorage.getItem('userId');
+        
+        try {
+            const response = await fetch('http://localhost:3001/api/cart', {
+
+                method:'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userId: parseInt(userId),
+                    productId: productId,
+                    quantity: 1
+                })
+            });
+
+            if(response.ok) {
+                alert("Produit ajouté au panier");
+            }
+        } catch(error) {
+            alert("Le produit n'a pas été ajouté");
+        }
+    }
+
     return (
 
         <div>
@@ -58,7 +83,8 @@ const Home = () => {
                             <button className="p-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
                             onClick={() => navigate(`product/${product.id}`)}>Je découvre !</button>
                             <button className="p-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"><FontAwesomeIcon icon={faHeart} /></button>
-                            <button className="px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors font-semibold">Panier</button>
+                            <button className="px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors font-semibold"
+                            onClick={() => handleAddProduct(product.id)}>Panier</button>
                         </div>
                     </div>
                     ))}

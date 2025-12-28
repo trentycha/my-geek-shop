@@ -5,6 +5,7 @@ const app = express();
 
 const productRoutes = require('./routes/product.js');
 const userRoutes = require('./routes/user.js');
+const cartRoutes = require('./routes/cart.js');
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -17,5 +18,6 @@ app.use(express.json())
 
 app.use('/api/product', productRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api', cartRoutes);
 
 module.exports = app;
