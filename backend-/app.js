@@ -18,6 +18,6 @@ app.use(express.json())
 
 app.use('/api/product', productRoutes);
 app.use('/api/user', userRoutes);
-app.use('/api', cartRoutes);
+// app.use('/api', cartRoutes);
 
 module.exports = app;

@@ -14,6 +14,7 @@ const Home = () => {
             try {
             const response = await fetch ('http://localhost:3001/api/product');
             const data = await response.json();
+
             setProduct(data);
             setLoading(false);
             } catch (error) {
@@ -58,11 +59,17 @@ const Home = () => {
 
         <div>
 
-            <div className="relative h-96 flex items-center mb-12 py-24">
+            <div className="relative h-96 flex items-center mb-12 overflow-hidden">
                 <img src="/images/home-background.jpg" alt="home-background" className="absolute inset-0 w-full h-full object-cover" />
-                <h1 className="relative text-3xl font-bold text-white px-8 text-left ml-24">
-                    Fan de pop culture ? Trouve ton bonheur sur My Geek Shop !
-                </h1>
+                <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
+                <div className="relative ml-32 px-8 justify-start">
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white text-left mb-4">
+                        Fan de pop culture ?
+                    </h1>
+                    <p className="text-xl md:text-2xl text-orange-400 font-semibold text-left">
+                        Trouve ton bonheur sur My Geek Shop !
+                    </p>
+                </div>
             </div>
 
             <div className="ml-24 mr-24 mt-12">

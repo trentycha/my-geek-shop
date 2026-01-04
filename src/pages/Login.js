@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { useAuth } from '../contexts/AuthContext';
 
 const Login = () => {
     const [mail, setMail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,8 +20,23 @@ const Login = () => {
                 body: JSON.stringify({mail, password})
             });
 
-            const newUser = await response.json();
-            navigate(`/user/${newUser.id}`);
+            const data = await response.json();
+
+            if (data.token) {
+                const tokenPayload = JSON.parse(atob(data.token.split('.')[1]));
+                const userId = tokenPayload.id;
+                
+                const userResponse = await fetch(`http://localhost:3001/api/user/${userId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${data.token}`
+                    }
+                });
+                
+                const userData = await userResponse.json();
+                
+                login(userData, data.token);
+                navigate(`/user/${userId}`);
+            }
     
         } catch (error) {
             alert(error.message);

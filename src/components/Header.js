@@ -1,10 +1,24 @@
 import { useNavigate } from "react-router";
-import Login from "../pages/Login"
+import { useAuth } from "../contexts/AuthContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBasketShopping, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faBasketShopping, faUser, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
     const navigate = useNavigate();
+    const { user, isAuthenticated, logout } = useAuth();
+
+    const handleProfileClick = () => {
+        if (isAuthenticated) {
+            navigate(`/user/${user.id}`);
+        } else {
+            navigate('/user/login');
+        }
+    };
+
+    const handleLogout = () => {
+        logout();
+        navigate('/');
+    };
 
     return (
 
@@ -15,7 +29,8 @@ const Header = () => {
             <div className="w-1/2 flex p-6 gap-16 justify-end">
                 <button className="text-white">Goodies</button>
                 <button className="text-white">A propos</button>
-                <button onClick={() => navigate('/user')} className="text-white"><FontAwesomeIcon icon={faUser} /></button>
+                <button onClick={handleProfileClick} className="text-white"><FontAwesomeIcon icon={faUser} /></button>
+                {isAuthenticated && (<button onClick={handleLogout} className="text-white"> <FontAwesomeIcon icon={faArrowRightFromBracket} /></button> )}
                 <button onClick={() => navigate('/cart')} className="text-white"><FontAwesomeIcon icon={faBasketShopping} /></button>
             </div>
         </div>

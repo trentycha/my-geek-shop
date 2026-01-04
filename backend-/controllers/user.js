@@ -84,6 +84,9 @@ exports.login = async (req, res, next) => {
         const access_token = jwt.sign({id: user.id}, process.env.JWT, {expiresIn: '1h'});
 
         res.status(200).json({
+            id: user.id,
+            name: user.name,
+            firstname: user.firstname,
             mail: user.mail,
             token: access_token,
         })
@@ -94,30 +97,46 @@ exports.login = async (req, res, next) => {
 
 exports.updateUser = async (req, res, next) => {
 
-    try {
-        const {id} = req.params;
+try {
+        const authHeader = req.headers.authorization;
+        if (!authHeader) {
+            return res.status(401).json({ error: "Token manquant" });
+        }
+
+        const token = authHeader.split(' ')[1];
+        const decoded = jwt.verify(token, process.env.JWT);
+
+        if (decoded.id !== parseInt(req.params.id)) {
+            return res.status(403).json({ error: "Vous ne pouvez modifier que votre propre profil" });
+        }
+
+        const { id } = req.params;
         const {name, firstname, mail, phone, address, password} = req.body;
 
-        const salt = await bcrypt.genSalt(10);
-        const crypted = await bcrypt.hash(req.body.password, salt);
+        const updateData = {};
+        if (name) updateData.name = name;
+        if (firstname) updateData.firstname = firstname;
+        if (mail) updateData.mail = mail;
+        if (phone) updateData.phone = phone;
+        if (address) updateData.address = address;
 
-        const checkMail = await prisma.user.findUnique({
-            where: {mail},
-        });
-        if(checkMail) {
-            return res.status(400).json({error : "Cet email est déjà associé à un utilisateur"});
-        };
+        if (password) {
+            const salt = await bcrypt.genSalt(10);
+            updateData.password = await bcrypt.hash(password, salt);
+        }
 
-        const updateUser = await prisma.user.update( {
+        if (mail) {
+            const checkMail = await prisma.user.findUnique({
+                where: {mail},
+            });
+            if (checkMail && checkMail.id !== parseInt(id)) {
+                return res.status(400).json({error : "Cet email est déjà associé à un utilisateur"});
+            }
+        }
+
+        const updateUser = await prisma.user.update({
             where: {id: parseInt(id)},
-            data: {
-                name,
-                firstname,
-                mail,
-                phone,
-                address,
-                password: crypted,
-            },
+            data: updateData,
         });
 
         const access_token = jwt.sign({id: updateUser.id}, process.env.JWT, {expiresIn: '1h'});

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { useAuth } from '../contexts/AuthContext';
 
 const Register = () => {
     const [name, setName] = useState("");
@@ -9,6 +10,7 @@ const Register = () => {
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -23,6 +25,10 @@ const Register = () => {
             });
 
             const newUser = await response.json();
+
+            if (newUser.token) {
+                login(newUser.user, newUser.token);
+            }
             navigate(`/user/${newUser.id}`);
     
         } catch (error) {
@@ -38,7 +44,7 @@ const Register = () => {
     };
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 py-32 px-60">
+        <div className="py-32 px-60">
             <div>
                 <form onSubmit={handleSubmit} className="max-w-md mx-auto p-8 bg-white rounded-lg shadow-md space-y-4">
 

@@ -6,7 +6,24 @@ import { faFaceSadCry } from '@fortawesome/free-solid-svg-icons';
 const Cart = () => {
     const navigate = useNavigate();
     
-    const [cartItems, setCartItems] = useState([]);
+    const [cartItems, setCartItems] = useState([
+        {
+            id: 1,
+            name: "Figurine Totoro",
+            price: 39.99,
+            quantity: 2,
+            image: "/images/totoro.png",
+            category: "Ghibli"
+        },
+        {
+            id: 2,
+            name: "Sabre Laser",
+            price: 69.99,
+            quantity: 1,
+            image: "/images/sabre-laser.png",
+            category: "Star Wars"
+        }
+    ]);
 
     useEffect(() => {
         const fetchProducts = async () => {
