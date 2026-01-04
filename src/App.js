@@ -21,7 +21,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/user" element={<Register />} />
           <Route path="/user/login" element={<Login />} />
-          <Route path="/user/:id" element={<Profile />} />
+          <Route path="/user/:id" element={<ProtectedRoutes><Profile /></ProtectedRoutes>} />
           <Route path="/user/update/:id" element={<ModifiedProfile />} />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/cart" element={<ProtectedRoutes><Cart /></ProtectedRoutes>} />

@@ -47,7 +47,7 @@ const Login = () => {
     };
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 py-32 px-60">
+        <div className="py-32 px-60">
             <div>
                 <form onSubmit={handleSubmit} className="max-w-md mx-auto p-8 bg-white rounded-lg shadow-md space-y-4">
 
@@ -64,6 +64,9 @@ const Login = () => {
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg"/>
 
                     <button type="submit" className="w-full bg-orange-600 text-white font-semibold py-3 rounded-lg hover:bg-orange-700 transition-colors duration-200">Je me connecte !</button>
+
+                    <p className="flex justify-start text-gray-600 text-left text-sm mt-2 mb-2">Pas encore de compte ?</p>
+                    <button onClick={() => navigate(`/user`)} className="w-full bg-orange-400 text-white font-semibold py-3 rounded-lg hover:bg-orange-700 transition-colors duration-200">Je crée mon compte !</button>
                 
                 </form>
             </div>
