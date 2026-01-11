@@ -1,32 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFaceSadCry } from '@fortawesome/free-solid-svg-icons';
+import { faFaceSadCry, faPlus, faMinus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const Cart = () => {
     const navigate = useNavigate();
-    
-    const [cartItems, setCartItems] = useState([
-        {
-            id: 1,
-            name: "Figurine Totoro",
-            price: 39.99,
-            quantity: 2,
-            image: "/images/totoro.png",
-            category: "Ghibli"
-        },
-        {
-            id: 2,
-            name: "Sabre Laser",
-            price: 69.99,
-            quantity: 1,
-            image: "/images/sabre-laser.png",
-            category: "Star Wars"
-        }
-    ]);
+    const [cartItems, setCartItems] = useState([]);
 
-    useEffect(() => {
-        const fetchProducts = async () => {
+    const fetchProducts = async () => {
             
         try {
             const response = await fetch ('http://localhost:3001/api/cart');
@@ -35,15 +16,45 @@ const Cart = () => {
         } catch (error) {
                 alert(error.message);
             }
-        };
+    };
 
+    useEffect(() => {
         fetchProducts();
-
     }, []);
+
+    const updateQuantity = async (userId, productId, newQuantity) => {
+        try {
+            const response = await fetch(`http://localhost:3001/api/cart/${userId}/${productId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ quantity: newQuantity })
+            });
+
+            if (response.ok) {
+                fetchProducts();
+            }
+        } catch (error) {
+            alert("Erreur lors de la mise à jour de la quantité");
+        }
+    };
+
+    const handleIncrease = (item) => {
+        updateQuantity(item.userId, item.productId, item.quantity + 1);
+    };
+
+    const handleDecrease = (item) => {
+        updateQuantity(item.userId, item.productId, item.quantity - 1);
+    };
+
+    const handleRemove = (item) => {
+        updateQuantity(item.userId, item.productId, 0);
+    };
 
     let total = 0;
     for (let i = 0; i < cartItems.length; i++) {
-        total += (cartItems[i].price * cartItems[i].quantity);
+        total += (cartItems[i].product.price * cartItems[i].quantity);
     }
 
     return (
@@ -53,7 +64,6 @@ const Cart = () => {
                 <h1 className="text-4xl font-bold text-gray-800 mb-8 text-left">Mon Panier</h1>
 
                 {cartItems.length === 0 ? (
-                    
                     <div className="bg-white rounded-xl shadow-lg p-16">
                         <div className="text-6xl mb-6 text-orange-600"><FontAwesomeIcon icon={faFaceSadCry} /></div>
                         <h2 className="text-3xl font-bold text-gray-800 mb-4">Votre panier est vide</h2>
@@ -74,11 +84,26 @@ const Cart = () => {
                             {cartItems.map((item) => (
                                 <div key={item.id} className="bg-white rounded-xl shadow-md p-6">
                                     <div className="flex gap-6">
-                                        <img src={item.image} alt={item.name} className="w-24 h-24 object-cover rounded-lg"/>
+                                        <img src={item.product.image} alt={item.product.name} className="w-24 h-24 object-cover rounded-lg"/>
                                         <div className="flex-1">
-                                            <h3 className="text-xl font-bold text-gray-800 text-left">{item.name}</h3>
-                                            <p className="text-2xl font-bold text-orange-600 mt-2 text-left">{item.price}€</p>
+                                            <h3 className="text-xl font-bold text-gray-800 text-left">{item.product.name}</h3>
+                                            <p className="text-2xl font-bold text-orange-600 mt-2 text-left">{item.product.price}€</p>
                                             <p className="text-gray-600 mt-2 text-left">Quantité : {item.quantity}</p>
+                                            <div className="flex items-center gap-4 mt-4">
+                                                <div className="flex items-center gap-3 bg-gray-100 rounded-lg px-3 py-2">
+                                                    <button onClick={() => handleDecrease(item)} className="text-orange-600 hover:text-orange-700 font-bold text-xl w-8 h-8 flex items-center justify-center">
+                                                        <FontAwesomeIcon icon={faMinus} />
+                                                    </button>
+                                                    <span className="font-semibold text-lg min-w-[30px] text-center">{item.quantity}</span>
+                                                    <button onClick={() => handleIncrease(item)} className="text-orange-600 hover:text-orange-700 font-bold text-xl w-8 h-8 flex items-center justify-center">
+                                                        <FontAwesomeIcon icon={faPlus} />
+                                                    </button>
+                                                </div>
+                                                
+                                                <button onClick={() => handleRemove(item)} className="text-red-500 hover:text-red-700 ml-auto">
+                                                    <FontAwesomeIcon icon={faTrash} /> Retirer
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

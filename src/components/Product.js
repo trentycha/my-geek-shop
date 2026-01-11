@@ -7,6 +7,12 @@ const Product = ({product}) => {
 
     const handleAddProduct = async (productId) => {
         const userId = localStorage.getItem('userId');
+
+        if (!userId) {
+        alert("Vous devez être connecté pour ajouter des produits au panier");
+        navigate('/user/login');
+        return;
+        }
         
         try {
             const response = await fetch('http://localhost:3001/api/cart', {

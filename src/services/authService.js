@@ -1,5 +1,6 @@
 const TOKEN_KEY = 'geek_shop_token';
 const USER_KEY = 'geek_shop_user';
+const USER_ID_KEY = 'userId';
 
 const authService = {
   setToken(token) {
@@ -12,6 +13,7 @@ const authService = {
 
   setUser(user) {
     localStorage.setItem(USER_KEY, JSON.stringify(user));
+    localStorage.setItem(USER_ID_KEY, user.id);
   },
 
   getUser() {
@@ -25,6 +27,10 @@ const authService = {
     }
   },
 
+  getUserId() {
+    return localStorage.getItem(USER_ID_KEY);
+  },
+
   isAuthenticated() {
     return !!this.getToken();
   },
@@ -32,6 +38,7 @@ const authService = {
   logout() {
     localStorage.removeItem(TOKEN_KEY);
     localStorage.removeItem(USER_KEY);
+    localStorage.removeItem(USER_ID_KEY);
   },
 
   getAuthHeaders() {

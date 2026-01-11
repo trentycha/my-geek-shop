@@ -24,7 +24,7 @@ const Header = () => {
 
         <div className="fixed top-0 left-0 right-0 z-10 bg-red-400 bg-opacity-50 backdrop-blur-md flex justify-between gap-4 ml-24 mr-24 mt-2 rounded-lg">
             <div className="w-1/6 p-6">
-                <span className="text-white">My Geek Shop Logo</span>
+                <button onClick={() => navigate('/')} className="text-white">My Geek Shop Logo</button>
             </div>
             <div className="w-1/2 flex p-6 gap-16 justify-end">
                 <button className="text-white">Goodies</button>

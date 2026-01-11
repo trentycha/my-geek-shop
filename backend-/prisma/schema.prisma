@@ -44,12 +44,13 @@ model Product {
 }
 
 model Cart {
+  id        Int      @id @default(autoincrement()) @map("Id_cart")
   userId    Int      @map("Id_user")
   productId Int      @map("Id_product")
   quantity  Int      @default(0)
   user      User     @relation(fields: [userId], references: [id])
   product   Product  @relation(fields: [productId], references: [id])
 
-  @@id([userId, productId])
+  @@unique([userId, productId])  // ← Garde l'unicité mais sans en faire la clé primaire
   @@map("cart")
 }

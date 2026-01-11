@@ -23,6 +23,9 @@ const Login = () => {
             const data = await response.json();
 
             if (data.token) {
+                localStorage.setItem('userId', data.id);
+                localStorage.setItem('token', data.token);
+
                 const tokenPayload = JSON.parse(atob(data.token.split('.')[1]));
                 const userId = tokenPayload.id;
                 
