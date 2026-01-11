@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Loading from './Loading.js';
-import Product from './Product.js';
+import Product from '../components/Product.js';
 
 const Home = () => {
     const [loading, setLoading] = useState(true);
