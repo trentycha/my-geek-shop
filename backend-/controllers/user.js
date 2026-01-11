@@ -21,7 +21,6 @@ exports.getUserById = async (req, res, next) => {
 exports.register = async (req, res, newt) => {
 
     try {
-
         const {name, firstname, mail, phone, address, password} = req.body;
 
         const salt = await bcrypt.genSalt(10);
@@ -73,7 +72,7 @@ exports.login = async (req, res, next) => {
             where: {mail},
         });
         if(!user) {
-            return res.status(400).json({error: "L'email ne correspond à aucun compte."});
+            return res.status(400).json({error: "L'email ne correspond à aucun compte"});
         };
 
         const check = await bcrypt.compare(password, user.password);
